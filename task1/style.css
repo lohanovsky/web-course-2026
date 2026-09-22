@@ -1,29 +1,16 @@
-/* ============================================================
-   task1 — Резюме Дейла Купера
-   Тема: «Тёмный хвойный лес» (Pacific Northwest / Twin Peaks)
-
-   Раскладка — только Flexbox. Обязательные свойства лабы:
-     flex-direction  → body, main, .intro, .bio, .education-list, .contacts
-     justify-content → .profile (center), .site-nav ul (center)
-     align-items     → body (center), .profile (center), .card h2 (center),
-                       .education-list li (baseline)
-     flex-wrap       → .profile, .site-nav ul, .education-list li
-     gap             → body, main, .profile, .site-nav ul, списки
-   Без float, position: absolute/fixed, инлайн-стилей и JavaScript.
-   ============================================================ */
+/* Резюме Дейла Купера — тёмно-хвойная тема, раскладка на Flexbox */
 
 :root {
-    --bg: #0f1712;           /* глубокий хвойный, почти чёрный */
-    --panel: #1a2820;        /* панели — тёмный мох */
-    --panel-border: #24382c; /* границы панелей */
-    --text: #dce5dc;         /* светлый серо-зелёный текст */
-    --muted: #8fa294;        /* приглушённый «туман» */
-    --accent: #7fb088;       /* акцент — светящийся мох */
-    --accent-soft: #a9c5b4;  /* мягкий шалфейный */
-    --red-room: #a64444;     /* «Красная комната» — точечный акцент */
+    --bg: #0f1712;
+    --panel: #1a2820;
+    --panel-border: #24382c;
+    --text: #dce5dc;
+    --muted: #8fa294;
+    --accent: #7fb088;
+    --accent-soft: #a9c5b4;
+    --red-room: #a64444;
 }
 
-/* box-sizing: border-box глобально — по требованию лабы */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -31,7 +18,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* плавные якорные переходы без JS */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -45,7 +32,6 @@ body {
     line-height: 1.6;
     color: var(--text);
     background-color: var(--bg);
-    /* туман над лесом: мягкое свечение за шапкой + ночное небо */
     background-image:
         radial-gradient(640px 320px at 50% 0%, rgba(127, 176, 136, 0.14), transparent 70%),
         linear-gradient(180deg, #15221b 0%, #0f1712 45%, #0b120e 100%);
@@ -160,7 +146,6 @@ main {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
-/* заголовок секции + тянущаяся декоративная линия */
 .card h2 {
     display: flex;
     align-items: center;
@@ -279,7 +264,6 @@ main {
     text-underline-offset: 4px;
 }
 
-/* ховер-эффект «Красной комнаты»: смена цвета + подчёркивание */
 .contacts-list a:hover {
     color: var(--red-room);
     text-decoration-color: currentColor;
