@@ -1,0 +1,305 @@
+/* ============================================================
+   task1 — Резюме Дейла Купера
+   Тема: «Тёмный хвойный лес» (Pacific Northwest / Twin Peaks)
+
+   Раскладка — только Flexbox. Обязательные свойства лабы:
+     flex-direction  → body, main, .intro, .bio, .education-list, .contacts
+     justify-content → .profile (center), .site-nav ul (center)
+     align-items     → body (center), .profile (center), .card h2 (center),
+                       .education-list li (baseline)
+     flex-wrap       → .profile, .site-nav ul, .education-list li
+     gap             → body, main, .profile, .site-nav ul, списки
+   Без float, position: absolute/fixed, инлайн-стилей и JavaScript.
+   ============================================================ */
+
+:root {
+    --bg: #0f1712;           /* глубокий хвойный, почти чёрный */
+    --panel: #1a2820;        /* панели — тёмный мох */
+    --panel-border: #24382c; /* границы панелей */
+    --text: #dce5dc;         /* светлый серо-зелёный текст */
+    --muted: #8fa294;        /* приглушённый «туман» */
+    --accent: #7fb088;       /* акцент — светящийся мох */
+    --accent-soft: #a9c5b4;  /* мягкий шалфейный */
+    --red-room: #a64444;     /* «Красная комната» — точечный акцент */
+}
+
+/* box-sizing: border-box глобально — по требованию лабы */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* плавные якорные переходы без JS */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    min-height: 100vh;
+    padding: 40px 16px 56px;
+    font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    /* туман над лесом: мягкое свечение за шапкой + ночное небо */
+    background-image:
+        radial-gradient(640px 320px at 50% 0%, rgba(127, 176, 136, 0.14), transparent 70%),
+        linear-gradient(180deg, #15221b 0%, #0f1712 45%, #0b120e 100%);
+}
+
+::selection {
+    background: rgba(127, 176, 136, 0.35);
+}
+
+/* ---------- Шапка ---------- */
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+    max-width: 720px;
+    padding: 32px;
+    background-color: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 6px rgba(127, 176, 136, 0.15), 0 12px 24px rgba(0, 0, 0, 0.45);
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.intro h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--accent-soft);
+}
+
+.role {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.tagline {
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* ---------- Навигация ---------- */
+
+.site-nav {
+    width: 100%;
+    max-width: 720px;
+}
+
+.site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    list-style: none;
+    padding: 12px 18px;
+    background-color: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+}
+
+.site-nav a {
+    color: var(--accent-soft);
+    text-decoration: none;
+    letter-spacing: 0.4px;
+}
+
+.site-nav a:hover {
+    color: var(--red-room);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* ---------- Основная сетка ---------- */
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 720px;
+}
+
+.card {
+    padding: 28px 32px;
+    background-color: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* заголовок секции + тянущаяся декоративная линия */
+.card h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    color: var(--accent);
+}
+
+.card h2::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* ---------- О себе ---------- */
+
+.bio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ---------- Образование ---------- */
+
+.education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+    counter-reset: edu;
+}
+
+.education-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 16px;
+}
+
+.education-list li::before {
+    content: counter(edu) ". ";
+    counter-increment: edu;
+    color: var(--red-room);
+    font-weight: 700;
+}
+
+.edu-place {
+    margin-right: auto;
+    font-weight: 600;
+    font-size: 1.02rem;
+}
+
+.edu-years {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.edu-note {
+    width: 100%;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+/* ---------- Навыки ---------- */
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+}
+
+.skills-list li {
+    display: flex;
+}
+
+.skill {
+    padding: 8px 16px;
+    background-color: rgba(127, 176, 136, 0.14);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent-soft);
+    font-size: 0.92rem;
+    letter-spacing: 0.3px;
+}
+
+.skills-list li:hover .skill {
+    background-color: rgba(127, 176, 136, 0.28);
+    color: var(--text);
+}
+
+/* ---------- Контакты ---------- */
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+}
+
+.contacts-list a {
+    color: var(--accent-soft);
+    text-decoration: underline;
+    text-decoration-color: rgba(169, 197, 180, 0.35);
+    text-underline-offset: 4px;
+}
+
+/* ховер-эффект «Красной комнаты»: смена цвета + подчёркивание */
+.contacts-list a:hover {
+    color: var(--red-room);
+    text-decoration-color: currentColor;
+}
+
+.red-room-quote {
+    width: 100%;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(166, 68, 68, 0.45);
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    letter-spacing: 1.5px;
+    color: var(--red-room);
+}
+
+/* ---------- Доступность ---------- */
+
+a:focus-visible {
+    outline: 2px solid var(--red-room);
+    outline-offset: 3px;
+}
+
