@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.app {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pad {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.green {
+  background-color: #2ecc71;
+}
+
+.red {
+  background-color: #e74c3c;
+}
+
+.yellow {
+  background-color: #f1c40f;
+}
+
+.blue {
+  background-color: #3498db;
+}
+
+.pad.active {
+  opacity: 1;
+}
+
+#start-button {
+  min-width: 160px;
+  min-height: 44px;
+  font-size: 16px;
+  cursor: pointer;
+}
